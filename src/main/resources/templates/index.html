@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -19,10 +19,10 @@
             <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
                 <ul class="navbar-nav row">
                     <li class="nav-item col-md-4">
-                        <a class="nav-link text-white active h5" href="/">Login</a>
+                        <a class="nav-link text-white active h5" href="/user/login">Login</a>
                     </li>
                     <li class="nav-item col-md-4">
-                        <a class="nav-link text-white active h5" href="/">Register</a>
+                        <a class="nav-link text-white active h5" href="/user/register">Register</a>
                     </li>
                 </ul>
             </div>
@@ -35,19 +35,13 @@
             <p class="h4">The application is here to help us keep in mind our shopping needs.</p>
             <hr class="my-3 bg-white w-75" />
             <h3>
-                <a class="text-primay" href="/">Login</a>
+                <a class="text-primay" href="/user/login">Login</a>
                 if you have an account or
-                <a class="text-primay" href="/">Register</a>
+                <a class="text-primay" href="/user/register">Register</a>
                 now and check our deals.
             </h3>
         </div>
     </main>
-    <footer class="footer bg-transparent  py-2">
-       <div class="container-fluid text-center">
-			<div class="footer-background h5 text-white">
-            &copy; Spring team 2020. All rights reserved.
-			</div>
-		</div>
-    </footer>
+    <th:block th:include="~{/fragments/footer}"></th:block>
 </body>
 </html>

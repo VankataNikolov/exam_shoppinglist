@@ -18,7 +18,7 @@ public class UserEntity extends BaseEntity{
     }
 
     @Column(name = "username", nullable = false, unique = true)
-    @Size(min = 2, max = 20)
+    @Size(min = 3, max = 20)
     public String getUsername() {
         return username;
     }
@@ -28,7 +28,7 @@ public class UserEntity extends BaseEntity{
     }
 
     @Column(name = "password", nullable = false)
-    @Size(min = 2, max = 20)
+    @Size(min = 3, max = 20)
     public String getPassword() {
         return password;
     }

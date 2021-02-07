@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
@@ -63,7 +64,7 @@ public class ProductEntity extends BaseEntity{
         this.neededBefore = neededBefore;
     }
 
-    @Column(name = "category", nullable = false)
+    @NotNull
     @ManyToOne
     public CategoryEntity getCategory() {
         return category;
