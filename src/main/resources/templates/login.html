@@ -10,23 +10,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg bg-nav rounded">
-			<a class="nav-link text-white active h5" href="/">Shopping List App</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-                <ul class="navbar-nav row">
-                    <li class="nav-item col-md-4">
-                        <a class="nav-link text-white active h5" href="/">Login</a>
-                    </li>
-                    <li class="nav-item col-md-4">
-                        <a class="nav-link text-white active h5" href="/">Register</a>
-					</li>
-				</ul>
-			</div>
-	</nav>
+    <th:block th:include="~{/fragments/navnonlogged}"></th:block>
 </header>
 <main>
     <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Login</span></h1>
@@ -34,7 +18,7 @@
     <form th:object="${userLoginBindingModel}" class="mx-auto w-25 bg-blur" action="/user/login" method="POST">
         <small th:each="err : ${#fields.allErrors()}" th:text="${err}" class="text-danger">Error message</small>
         <br/>  
-        <small class="text-danger">Incorrect username or password!</small>
+        <small th:if="${notFound}" class="text-danger">Incorrect username or password!</small>
         <div class="form-group">
             <div class="label-holder text-white d-flex justify-content-center">
                 <label for="username" class="h3 mb-2">Username</label>
