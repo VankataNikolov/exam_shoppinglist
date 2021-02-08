@@ -1,31 +1,31 @@
-package softuni.exam_shoppinglist.model.entity;
+package softuni.exam_shoppinglist.model.service;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+import softuni.exam_shoppinglist.model.entity.CategoryEntity;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "products")
-public class ProductEntity extends BaseEntity{
+public class ProductServiceModel {
 
+    private Long id;
     private String name;
     private String description;
     private BigDecimal price;
     private LocalDateTime neededBefore;
     private CategoryEntity category;
 
-    public ProductEntity() {
+    public ProductServiceModel() {
     }
 
-    @Column(name = "name", unique = true)
-    @Size(min = 3, max = 20)
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
     public String getName() {
         return name;
     }
@@ -34,8 +34,6 @@ public class ProductEntity extends BaseEntity{
         this.name = name;
     }
 
-    @Column(name = "description", nullable = false)
-    @Size(min = 5)
     public String getDescription() {
         return description;
     }
@@ -44,8 +42,6 @@ public class ProductEntity extends BaseEntity{
         this.description = description;
     }
 
-    @Column(name = "price", nullable = false)
-    @Positive
     public BigDecimal getPrice() {
         return price;
     }
@@ -54,8 +50,6 @@ public class ProductEntity extends BaseEntity{
         this.price = price;
     }
 
-    @Column(name = "needed_before", nullable = false)
-    @FutureOrPresent
     public LocalDateTime getNeededBefore() {
         return neededBefore;
     }
@@ -64,8 +58,6 @@ public class ProductEntity extends BaseEntity{
         this.neededBefore = neededBefore;
     }
 
-    @NotNull
-    @ManyToOne
     public CategoryEntity getCategory() {
         return category;
     }
