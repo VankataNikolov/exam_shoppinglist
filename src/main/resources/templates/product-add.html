@@ -46,16 +46,17 @@
         </div>
         <div class="form-group">
             <div class="text-white label-holder d-flex justify-content-center">
-                <label for="category" class="h4 mb-2">Category</label>
+                <label for="categoryId" class="h4 mb-2">Category</label>
             </div>
-            <select class="browser-default custom-select" id="category" name="category">
+            <select class="browser-default custom-select" id="categoryId" name="categoryId">
                 <option value="">Select category</option>
-				<option value="FOOD">Food</option>
-                <option value="DRINK">Drink</option>
-                <option value="HOUSEHOLD">Household</option>
-                <option value="OTHER">Other</option>  				
+				<option th:each="category : ${categories}"
+                        th:text="${category.name}"
+                        th:value="${category.id}"
+                        th:selected="${category.id} == *{categoryId}"
+                        >Food</option>
             </select>
-            <small th:if="${#fields.hasErrors('category')}" th:errors="*{category}"class="text-danger">Category error message</small>
+            <small th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}"class="text-danger">Category error message</small>
         </div>
 
         <div class="button-holder d-flex justify-content-center">

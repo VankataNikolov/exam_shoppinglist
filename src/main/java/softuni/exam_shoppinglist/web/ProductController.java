@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import softuni.exam_shoppinglist.model.binding.ProductAddBindingModel;
+import softuni.exam_shoppinglist.model.entity.entityenum.CategoryEnum;
+import softuni.exam_shoppinglist.service.CategoryService;
+import softuni.exam_shoppinglist.service.ProductService;
 
 import javax.validation.Valid;
 
@@ -15,13 +18,20 @@ import javax.validation.Valid;
 @RequestMapping("/products")
 public class ProductController {
 
+    private final ProductService productService;
+    private final CategoryService categoryService;
+
+    public ProductController(ProductService productService, CategoryService categoryService) {
+        this.productService = productService;
+        this.categoryService = categoryService;
+    }
 
     @GetMapping("/add")
     public String productsAdd(Model model){
         if(!model.containsAttribute("productAddBindingModel")){
             model.addAttribute("productAddBindingModel", new ProductAddBindingModel());
         }
-
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "product-add";
     }
 
@@ -32,11 +42,11 @@ public class ProductController {
         if(bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("productAddBindingModel", productAddBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.productAddBindingModel", bindingResult);
-            return "redirect:add";
+            return "redirect:/add";
         }
 
-        //TODO business logic for adding product
+        this.productService.addProduct(productAddBindingModel);
 
-        return "redirect:home";
+        return "redirect:/home";
     }
 }

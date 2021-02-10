@@ -1,9 +1,8 @@
 package softuni.exam_shoppinglist.model.binding;
 
-import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -13,7 +12,7 @@ public class ProductAddBindingModel {
     private String description;
     private BigDecimal price;
     private LocalDateTime neededBefore;
-    private String category;
+    private Long categoryId;
 
     public ProductAddBindingModel() {
     }
@@ -48,6 +47,7 @@ public class ProductAddBindingModel {
         this.price = price;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @FutureOrPresent(message = "The date cannot be in the past!")
     public LocalDateTime getNeededBefore() {
         return neededBefore;
@@ -57,12 +57,12 @@ public class ProductAddBindingModel {
         this.neededBefore = neededBefore;
     }
 
-    @NotNull(message = "Must select the category")
-    public String getCategory() {
-        return category;
+    @NotNull
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 }

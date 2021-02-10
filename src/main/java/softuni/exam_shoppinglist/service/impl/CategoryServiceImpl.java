@@ -42,4 +42,9 @@ public class CategoryServiceImpl implements CategoryService {
         allCategories.forEach(cat -> categories.add(this.modelMapper.map(cat, CategoryServiceModel.class)));
         return categories;
     }
+
+    @Override
+    public CategoryEntity getCategoryById(Long id) {
+        return this.categoryRepository.getOne(id);
+    }
 }
