@@ -96,7 +96,7 @@ public class UserController {
 
     @GetMapping("/logout")
     public String logout(){
-        //ToDo logout
+        this.userService.logout();
         return "redirect:/";
     }
 }

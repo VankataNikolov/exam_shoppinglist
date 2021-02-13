@@ -8,4 +8,6 @@ public interface UserService {
     UserServiceModel authenticate(String username, String password);
 
     void login(UserServiceModel userAuthenticate);
+
+    void logout();
 }

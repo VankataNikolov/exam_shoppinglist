@@ -4,6 +4,7 @@ import softuni.exam_shoppinglist.model.binding.ProductAddBindingModel;
 import softuni.exam_shoppinglist.model.entity.entityenum.CategoryEnum;
 import softuni.exam_shoppinglist.model.service.ProductServiceModel;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface ProductService {
@@ -11,5 +12,11 @@ public interface ProductService {
     List<ProductServiceModel> getProductsByCategory(CategoryEnum categoryEnum);
 
 
-    ProductServiceModel addProduct(ProductAddBindingModel productAddBindingModel);
+    void addProduct(ProductAddBindingModel productAddBindingModel);
+
+    void buyProduct(Long id);
+
+    BigDecimal getPriceSum();
+
+    void buyAllProducts();
 }

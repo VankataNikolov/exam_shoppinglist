@@ -17,7 +17,7 @@ public class ProductAddBindingModel {
     public ProductAddBindingModel() {
     }
 
-    @NotNull
+    @NotBlank
     @Size(min = 3, max = 20, message = "Name length must be between 3 and 20 characters!")
     public String getName() {
         return name;
@@ -27,7 +27,7 @@ public class ProductAddBindingModel {
         this.name = name;
     }
 
-    @NotNull
+    @NotBlank
     @Size(min = 5, message = "Description length must be more than 5 characters!")
     public String getDescription() {
         return description;
@@ -38,7 +38,7 @@ public class ProductAddBindingModel {
     }
 
     @NotNull
-    @Positive(message = "Price must be positive number!")
+    @DecimalMin(value = "0", message = "Price must be positive number!")
     public BigDecimal getPrice() {
         return price;
     }

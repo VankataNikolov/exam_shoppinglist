@@ -10,6 +10,7 @@ import softuni.exam_shoppinglist.repository.ProductRepository;
 import softuni.exam_shoppinglist.service.CategoryService;
 import softuni.exam_shoppinglist.service.ProductService;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,11 +40,26 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductServiceModel addProduct(ProductAddBindingModel productAddBindingModel) {
+    public void addProduct(ProductAddBindingModel productAddBindingModel) {
         ProductEntity newProduct = this.modelMapper.map(productAddBindingModel, ProductEntity.class);
         newProduct.setCategory(this.categoryService.getCategoryById(productAddBindingModel.getCategoryId()));
         this.productRepository.save(newProduct);
 
-        return this.modelMapper.map(newProduct, ProductServiceModel.class);
+    }
+
+    @Override
+    public void buyProduct(Long id) {
+        this.productRepository.deleteById(id);
+    }
+
+    @Override
+    public BigDecimal getPriceSum() {
+
+        return this.productRepository.getSumOfPrice();
+    }
+
+    @Override
+    public void buyAllProducts() {
+        this.productRepository.deleteAll();
     }
 }
